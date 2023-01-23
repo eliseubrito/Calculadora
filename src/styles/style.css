@@ -1,0 +1,100 @@
+/* CONTAINER */
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5fffa;
+}
+
+.Container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  border: 1px solid gray;
+  border-radius: 2px;
+  background-color: #f0fff0;
+  /* width: 600px; */
+}
+
+/* BOX 1 */
+.FormBox {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 50px;
+}
+
+.FormName {
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  color: #4f4f4f;
+}
+
+.Formulario {
+  display: flex;
+  flex-direction: column;
+}
+
+.InfoLabel {
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #696969;
+}
+
+.InfoDetailLabel {
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  margin-top: 3px;
+  font-weight: 500;
+  color: #a19f9f;
+}
+
+.CaixaTexto {
+  padding: 10px;
+  border: 5;
+  outline: 0;
+}
+
+/* BOX 2 */
+.Result {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 50px;
+  background-color: #f0fff0;
+}
+
+.ResultTitle {
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  font-style: italic;
+  color: #0000ff;
+  border-bottom: #b9bbbd solid 1px;
+}
+
+.Valor {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.ValorResult {
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+  color: #75c1f0;
+  font-style: italic;
+}
+
+.ValorBold {
+  color: #7575f5;
+  font-size: 15px;
+  font-weight: bold;
+}
