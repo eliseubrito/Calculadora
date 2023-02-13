@@ -1,9 +1,9 @@
 import { useContext, useEffect } from "react";
-import { DataContext } from "../../Contexts/Context";
+import { DataContext } from "../../contexts/Context";
 
 const Result = () => {
   const resultado = useContext(DataContext);
-  console.log(resultado);
+  // console.log(resultado);
   // resultado.setResults([1, 2]);
   // const resultado = useContext(DataContext);
   // console.log(resultado);

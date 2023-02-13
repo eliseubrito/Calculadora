@@ -1,7 +1,11 @@
 import axios from "axios";
 import { useContext } from "react";
-import { DataContext } from "../../Contexts/Context";
+import { DataContext } from "../../contexts/Context";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 // const [set, setResultados] = useContext(DataContext);
+
 const Form = () => {
   const resultado = useContext(DataContext);
   async function GetResults(valor, parcelas, mdr) {
@@ -34,12 +38,38 @@ const Form = () => {
     let test2 = parseInt(allinputs[1]);
     let test3 = parseInt(allinputs[2]);
     if (test >= 0 && test2 >= 0 && test3 >= 0) {
-      console.log(test, test2, test3);
+      // console.log(test, test2, test3);
       await GetResults(test, test2, test3);
     } else {
-      console.log("erro");
+      console.log("");
     }
   }
+
+  const schema = yup.object({
+    amount: yup
+      .string()
+      .required("O valor é obrigatório!")
+      .min(1000, "O valor mínimo é 1000")
+      .max(100000000, "O valor máximo é 100000000"),
+    installments: yup
+      .number()
+      .transform((value) =>
+        isNaN(value) || value === null || value === undefined ? 0 : value
+      )
+      .required("O número de parcelas é obrigatório!")
+      .min(1, "O mínimo de parcelas é 1")
+      .max(12, "O máximo de parcelas é 12"),
+    mdr: yup.string().required("O percentual é obrigatório!"),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   return (
     <div className="FormBox">
@@ -47,26 +77,35 @@ const Form = () => {
       <form className="Formulario">
         <label className="InfoLabel">Informe o valor da sua venda *</label>
         <input
+          {...register("amount")}
           className="CaixaTexto"
           type="number"
           id="valor"
-          onChange={inputs}
+          onChange={handleSubmit(inputs)}
+          name="amount"
         />
+        <p className="Error">{errors.amount?.message}</p>
         <label className="InfoLabel">Em quantas parcelas *</label>
         <input
+          {...register("installments")}
           className="CaixaTexto"
           type="number"
           id="parcelas"
-          onChange={inputs}
+          onChange={handleSubmit(inputs)}
+          name="installments"
         />
+        <p className="Error">{errors.installments?.message}</p>
         <label className="InfoDetailLabel">Máximo de 12 parcelas</label>
         <label className="InfoLabel">Informe o Percentual de MDR *</label>
         <input
+          {...register("mdr")}
           className="CaixaTexto"
           type="number"
           id="mdr"
-          onChange={inputs}
+          onChange={handleSubmit(inputs)}
+          name="mdr"
         />
+        <p className="Error">{errors.mdr?.message}</p>
       </form>
     </div>
   );

@@ -98,3 +98,10 @@ body {
   font-size: 15px;
   font-weight: bold;
 }
+
+.Error {
+  font-family: "Roboto", sans-serif;
+  color: red;
+  font-size: 12px;
+  font-weight: bold;
+}
